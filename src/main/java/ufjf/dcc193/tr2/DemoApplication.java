@@ -23,12 +23,12 @@ public class DemoApplication {
 	InitializingBean sendDatabase() {
 		return () -> {
 			areaConhecimentoRep.save(new AreaConhecimento(null, "Exatas"));
-			areaConhecimentoRep.save(new AreaConhecimento(null, "Biológicas"));
-			areaConhecimentoRep.save(new AreaConhecimento(null, "Engenharias"));
+			areaConhecimentoRep.save(new AreaConhecimento(null, "Biologia"));
+			areaConhecimentoRep.save(new AreaConhecimento(null, "Engenharia"));
 			areaConhecimentoRep.save(new AreaConhecimento(null, "Saúde"));
-			areaConhecimentoRep.save(new AreaConhecimento(null, "Socias Aplicadas"));
+			areaConhecimentoRep.save(new AreaConhecimento(null, "Socias"));
 			areaConhecimentoRep.save(new AreaConhecimento(null, "Humanas"));
-			areaConhecimentoRep.save(new AreaConhecimento(null, "Linguística, Letras e Artes"));
+			areaConhecimentoRep.save(new AreaConhecimento(null, "Letras"));
 
 		};
 	}
