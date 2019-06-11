@@ -82,14 +82,9 @@ public class Revisao {
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", avaliador='" + getAvaliador().toString() + "'" +
-            ", trabalho='" + getTrabalho().toString() + "'" +
-            ", nota='" + getNota() + "'" +
-            ", descricao='" + getDescricao() + "'" +
-            ", status='" + getStatus() + "'" +
-            "}";
+        return "{id='" + getId() + "', avaliador='" + getAvaliador().toString() + "'" +
+            ", trabalho='" + getTrabalho().toString() + "', nota='" + getNota() + "'" +
+            ", descricao='" + getDescricao() + "', status='" + getStatus() + "'}";
     }
 
     public Long getId() {
