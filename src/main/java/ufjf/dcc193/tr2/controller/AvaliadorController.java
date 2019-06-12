@@ -69,11 +69,11 @@ public class AvaliadorController {
     @RequestMapping("/listaRevisao/{id}")
     public String listaRevisaoAvaliador(@PathVariable Long id,Model model, HttpSession session){
         Avaliador avaliador = avaliadorRep.findById(id).get();
-        model.addAttribute("listaRevisao",revisaoRep.findByAvaliador(avaliador.getId()));
-        return "avaliador/lista-revisao-avaliador";
+        model.addAttribute("listRevisao",revisaoRep.findByAvaliador(avaliador.getId()));
+        return "avaliador/avaliador-list-revs";
     }
 
-    @RequestMapping("/mudarStatusRevisao/{id}")
+    @RequestMapping("/mudarStatusRev/{id}")
     public String mudarStatusRevisaoAvaliador(@PathVariable Long id,Revisao revisao){
         Revisao revisaoAux = revisaoRep.findById(id).get();
         revisaoAux.setStatus(revisao.getStatus());
