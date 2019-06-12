@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ufjf.dcc193.tr2.dao.*;
 import ufjf.dcc193.tr2.model.Avaliador;
+import ufjf.dcc193.tr2.model.Revisao;
 
 /**
  * AvaliadorController
@@ -70,5 +71,13 @@ public class AvaliadorController {
         Avaliador avaliador = avaliadorRep.findById(id).get();
         model.addAttribute("listaRevisao",revisaoRep.findByAvaliador(avaliador.getId()));
         return "avaliador/lista-revisao-avaliador";
+    }
+
+    @RequestMapping("/mudarStatusRevisao/{id}")
+    public String mudarStatusRevisaoAvaliador(@PathVariable Long id,Revisao revisao){
+        Revisao revisaoAux = revisaoRep.findById(id).get();
+        revisaoAux.setStatus(revisao.getStatus());
+        revisaoRep.save(revisaoAux);
+        return "redirect:/listaRevisao/"+ revisaoAux.getAvaliador().getId();
     }
 }
