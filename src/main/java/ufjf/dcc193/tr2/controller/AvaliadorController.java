@@ -1,5 +1,7 @@
 package ufjf.dcc193.tr2.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,9 @@ public class AvaliadorController {
 
     @Autowired
     AreaConhecimentoRepository areaConhecimentoRep;
+
+    @Autowired
+    RevisaoRepository revisaoRep;
 
     @RequestMapping("")
     public String homeAvaliador(Model model){
@@ -58,5 +63,12 @@ public class AvaliadorController {
     public String deletarAvaliador(@PathVariable Long id){
         avaliadorRep.deleteById(id);
         return "redirect:/avaliador/";
+    }
+
+    @RequestMapping("/listaRevisao/{id}")
+    public String listaRevisaoAvaliador(@PathVariable Long id,Model model, HttpSession session){
+        Avaliador avaliador = avaliadorRep.findById(id).get();
+        model.addAttribute("listaRevisao",revisaoRep.findByAvaliador(avaliador.getId()));
+        return "avaliador/lista-revisao-avaliador";
     }
 }
