@@ -3,6 +3,7 @@ package ufjf.dcc193.tr2.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ufjf.dcc193.tr2.dao.*;
@@ -34,5 +35,28 @@ public class AvaliadorController {
         return "avaliador/avaliador-form";
     }
 
+    @RequestMapping("/salvar")
+    public String salvarAvaliador(Avaliador avaliador){
+        avaliadorRep.save(avaliador);
+        return "redirect:/avaliador/";
+    }
+
+    @RequestMapping("/editar/{id}")
+    public String preEditarAvaliador(@PathVariable Long id, Model model){
+        model.addAttribute("avaliador",avaliadorRep.findById(id).get());
+        model.addAttribute("listArea",areaConhecimentoRep.findAll());
+        return "avaliador/avaliador-edit";
+    }
+
+    @RequestMapping("/editar/submit")
+    public String editarsalvarAvaliador(Avaliador avaliador){
+        avaliadorRep.save(avaliador);
+        return "redirect:/avaliador/";
+    }
     
+    @RequestMapping("/deletar/{id}")
+    public String deletarAvaliador(@PathVariable Long id){
+        avaliadorRep.deleteById(id);
+        return "redirect:/avaliador/";
+    }
 }
