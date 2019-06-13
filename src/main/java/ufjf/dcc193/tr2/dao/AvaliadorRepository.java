@@ -15,7 +15,7 @@ import ufjf.dcc193.tr2.model.Avaliador;
 @Repository
 public interface AvaliadorRepository extends JpaRepository<Avaliador, Long>{
 
-    Avaliador findFirstByEmailandCodigoAcesso(String email, String codigoAcesso);
+    //Avaliador findFirstByEmailandCodigoAcesso(String email, String codigoAcesso);
 
     List<Avaliador> findByAreaConhecimento(AreaConhecimento areaConhecimento);
 }

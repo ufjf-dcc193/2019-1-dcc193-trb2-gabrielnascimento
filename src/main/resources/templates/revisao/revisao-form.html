@@ -30,9 +30,13 @@
         <br/>
         <h6>Selecione área para revisão dos trabalhos</h6>
         <br/>
-        <div th:each="area: ${listArea}">
-            <a class="btn btn-primary" th:href="@{'./criar/' + ${area.id}}" role="button">
-                <span th:text="${area.descricao}"></span></a>
+        <div class="row">
+            <div th:each="area: ${listArea}">
+                <div class="col">
+                        <a class="btn btn-link" th:href="@{'./criar/' + ${area.id}}" role="button">
+                            <span th:text="${area.descricao}"></span></a>
+                </div>
+            </div>
         </div>   
     </div>
     <footer class="page-footer font-small">
