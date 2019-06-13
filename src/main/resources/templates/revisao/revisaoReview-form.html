@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="../webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>Principal</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <img
+                    src="https://images.expertmarket.co.uk/wp-content/uploads/2018/11/web-dot-com-thumb-web-design.png" />
+            </div>
+            <div class="col-sm-10" style="text-align: center">
+                <h3 style="line-height:60px">SAAT <h6>Sistema de avaliação anônima de trabalhos</h6>
+                </h3>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarMenu">
+                <div class="navbar-nav">
+                    <a th:href="@{/}" class="nav-item nav-link">Home</a>
+                </div>
+            </div>
+        </nav>
+        <br />
+        <div class="row">
+            <div class="col-6">
+                <a class="btn btn-primary" th:href="@{./criar}" role="button">Nova</a>
+            </div>
+        </div>
+        <br />
+        <form th:action="@{./salvar}" th:object="${revisao}" method="POST">
+            <div class="form-group">
+                <label>Descrição: <input type="text" class="form-control" th:field="*{descricao}" /></label>
+            </div>
+            <div class="form-group">
+                <label>Nota: <input type="number" class="form-control" th:field="*{nota}" /></label>
+            </div>
+            <div class="row">
+                <div class="col-4 card">
+                    <label> Lista de trabalhos</label>
+                    <div class="row card-body">
+                        <div class="col-12" th:each="trabalho, trabalhoInfo: ${listTrabalho}"
+                            th:object=${Trabalho}>
+                            <input class="form-check-input" type="radio"
+                                th:attr="checked=${trabalhoInfo.index == 0 ? true :false}"
+                                th:value="${trabalho.id}" name="trabalho">
+                            <label class="form-check-label" th:text="${trabalho.titulo}">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 card">
+                    <label> Lista de Avaliador</label>
+                    <div class="row card-body">
+                        <div class="col-12" th:each="avaliador, avaliadorInfo: ${listAvaliador}"
+                            th:object=${Avaliador}>
+                            <input class="form-check-input" type="radio" th:value="${avaliador.id}"
+                                th:attr="checked=${avaliadorInfo.index == 0 ? true :false} " name="avaliador">
+                            <label class="form-check-label" th:text="${avaliador.nome}">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 card">
+                    <label>Status</label>
+                    <div class="row card-body">
+                        <div class="form-check col-12">
+                            <input class="form-check-input" type="radio" th:value="0" th:field="*{status}" checked>
+                            <label class="form-check-label">A fazer</label>
+                        </div>
+                        <div class="form-check col-12">
+                            <input class="form-check-input" type="radio" th:value="1" th:field="*{status}">
+                            <label class="form-check-label">Avaliado</label>
+                        </div>
+                        <div class="form-check col-12">
+                            <input class="form-check-input" type="radio" th:value="2" th:field="*{status}">
+                            <label class="form-check-label">Impedido</label>
+                        </div>
+                        <div class="form-check col-12">
+                            <input class="form-check-input" type="radio" th:value="3" th:field="*{status}">
+                            <label class="form-check-label">Validado</label>
+                        </div>
+                        <div class="form-check col-12">
+                            <input class="form-check-input" type="radio" th:value="4" th:field="*{status}">
+                            <label class="form-check-label">Invalidado</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary" />
+            <input type="reset" class="btn btn-secondary" />
+        </form>
+    </div>
+    <footer class="page-footer font-small">
+        <div class="text-center py-3">
+            <a href="mailto:gabriel.nascimento@ice.ufjf.br?Subject=GerenciamentoOngs" target="_top">Gabriel
+                Nascimento</a> | Sistemas de Informação | UFJF
+        </div>
+    </footer>
+    <script src="../webjars/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../webjars/jquery/2.1.4/jquery.js" type="text/javascript"></script>
+</body>
+
+</html>
