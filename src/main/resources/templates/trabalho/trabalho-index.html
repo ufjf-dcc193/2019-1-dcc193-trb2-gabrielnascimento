@@ -52,11 +52,11 @@
                     <td th:text=${lista.url}></td>
                     <td th:text=${lista.areaConhecimento.descricao}></td>
                     <td>
-                        <a class="btn btn-warning" th:href="@{'./editar/' + ${listaTrabalho.id}}"
+                        <a class="btn btn-warning" th:href="@{'./editar/' + ${lista.id}}"
                             role="button">Editar</a>
                     </td>
                     <td>
-                        <a class="btn btn-danger" th:href="@{'./deletar/' + ${listaTrabalho.id}}"
+                        <a class="btn btn-danger" th:href="@{'./deletar/' + ${lista.id}}"
                             role="button">Deletar</a>
                     </td>
                   </tr>
