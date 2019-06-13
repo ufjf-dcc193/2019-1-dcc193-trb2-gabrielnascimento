@@ -55,4 +55,38 @@ public class RevisaoController {
         ));
         return "revisao/revisaoReview-form";
     }
+
+    @RequestMapping("/criar/salvar")
+    public String salvarRevisao(Revisao revisao){
+        revisaoRep.save(revisao);
+        return "redirect:/revisao/";
+    }
+
+    @RequestMapping("/editar/{id}")
+    public String editarRevisao(@PathVariable Long id, Model model){
+        Revisao revisao = revisaoRep.findById(id).get();
+        model.addAttribute("revisao",revisao);
+        Long idAreaConhecimento = revisao.getTrabalho().getAreaConhecimento().getId();
+        model.addAttribute("listTrabalho",trabalhoRep.findByAreaConhecimento(
+            areaConhecimentoRep.findById(idAreaConhecimento).get()
+        ));
+        model.addAttribute("listAvaliador",avaliadorRep.findByAreaConhecimento(
+            areaConhecimentoRep.findById(idAreaConhecimento).get()
+        ));
+        return "revisao/revisao-edit-form";
+    }
+
+    @RequestMapping("/editar/salvar")
+    public String editarRevisaoSubmit(Revisao revisao){
+        revisaoRep.save(revisao);
+        return "redirect:/revisao/";
+    }
+
+    @RequestMapping("/deletar/{id}")
+    public String deletarRevisao(@PathVariable Long id){
+        revisaoRep.deleteById(id);
+        return "redirect:/revisao/";
+    }
+
+
 }
