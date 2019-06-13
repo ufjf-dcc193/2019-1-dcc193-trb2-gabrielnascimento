@@ -45,7 +45,7 @@ public class TrabalhoController {
     @RequestMapping("/editar/{id}")
     public String preEditarTrabalho(@PathVariable Long id, Model model){
         model.addAttribute("trabalho",repTrabalho.findById(id).get());
-        model.addAttribute("listaArea",repAreaConhecimento.findAll());
+        model.addAttribute("listArea",repAreaConhecimento.findAll());
         return "trabalho/trabalho-edit-form";
     }
 
