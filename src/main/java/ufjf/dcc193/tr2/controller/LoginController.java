@@ -52,7 +52,7 @@ public class LoginController {
 
     @RequestMapping("/listarTrabalhos/{id}")
     public String listarTrabalhos(Model model,@PathVariable Long id, HttpSession session){
-        Avaliador avaliador = (Avaliador) session.getAttribute("usuarioLogado");
+        Avaliador avaliador = (Avaliador) session.getAttribute("usuario");
         model.addAttribute("listTrabalhos",  
         trabalhoRep.findByIdAvalaliadorAndIdAreaConhecimentoOrderByStatus(avaliador.getId(), id));
         return "acesso/acesso-trabalho-index";
