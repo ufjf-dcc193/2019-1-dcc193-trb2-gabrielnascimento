@@ -11,9 +11,11 @@ import org.springframework.context.annotation.Bean;
 
 import ufjf.dcc193.tr2.dao.AreaConhecimentoRepository;
 import ufjf.dcc193.tr2.dao.AvaliadorRepository;
+import ufjf.dcc193.tr2.dao.RevisaoRepository;
 import ufjf.dcc193.tr2.dao.TrabalhoRepository;
 import ufjf.dcc193.tr2.model.AreaConhecimento;
 import ufjf.dcc193.tr2.model.Avaliador;
+import ufjf.dcc193.tr2.model.Revisao;
 import ufjf.dcc193.tr2.model.Trabalho;
 
 @SpringBootApplication
@@ -27,6 +29,9 @@ public class DemoApplication {
 
 	@Autowired
 	TrabalhoRepository trabalhoRep;
+
+	@Autowired
+	RevisaoRepository revisaoRep;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -65,6 +70,8 @@ public class DemoApplication {
 					 areaConhecimentoRep.findById(6L).get(),
 					 areaConhecimentoRep.findById(7L).get()
 					 ))));
+			revisaoRep.save(new Revisao(avaliadorRep.findAll().get(0),
+					 trabalhoRep.findAll().get(0), 2, "Olimpiada de fisica", 1));		 
 		};
 	}
 

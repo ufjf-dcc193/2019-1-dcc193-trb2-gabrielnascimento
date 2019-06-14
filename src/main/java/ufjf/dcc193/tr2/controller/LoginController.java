@@ -60,10 +60,10 @@ public class LoginController {
 
     @RequestMapping("/avaliar/{id}")
     public String avaliarTrabalhos(Model model,@PathVariable Long id, HttpSession session){
-        Avaliador avaliador = (Avaliador) session.getAttribute("usuarioLogado");
+        Avaliador avaliador = (Avaliador) session.getAttribute("usuario");
         Trabalho trabalho = trabalhoRep.findById(id).get();
         Revisao revisao = revisaoRep.findFirstByAvaliadorAndTrabalho(avaliador,trabalho);
-        session.setAttribute("revisao", revisao);
+        session.setAttribute("revisaoSubmit", revisao);
         model.addAttribute("trabalho",  trabalho);
         model.addAttribute("revisao", revisao );
         return "acesso/acesso-avaliacao-index";
@@ -72,7 +72,7 @@ public class LoginController {
     @RequestMapping("/salvarAvaliar")
     public String salvarAvaliarTrabalhos(@RequestParam("action") String tipoAcao,
      Revisao revisao, HttpSession session){
-        Revisao revisaoSession = (Revisao) session.getAttribute("avaliacao");
+        Revisao revisaoSession = (Revisao) session.getAttribute("revisaoSubmit");
         Long idarea = revisaoSession.getTrabalho().getAreaConhecimento().getId();
         System.out.println(revisao.getDescricao() + " " + revisao.getNota());
         
