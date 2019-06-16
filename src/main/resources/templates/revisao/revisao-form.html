@@ -33,7 +33,7 @@
         <div class="row">
             <div th:each="area: ${listArea}">
                 <div class="col">
-                        <a class="btn btn-link" th:href="@{'./criar/' + ${area.id}}" role="button">
+                        <a class="btn btn-primary" th:href="@{'./criar/' + ${area.id}}" role="button">
                             <span th:text="${area.descricao}"></span></a>
                 </div>
             </div>
