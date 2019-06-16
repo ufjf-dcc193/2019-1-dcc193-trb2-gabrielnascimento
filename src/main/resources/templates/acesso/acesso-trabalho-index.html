@@ -36,6 +36,7 @@
     <div class="col" th:each="lista: ${listTrabalhos}">
       <a class="btn btn-primary" th:href="@{'../avaliar/' + ${lista.id}}" role="button"><span
               th:text="${lista.titulo}"></span></a>
+      <br/>        
     </div>
   </div>
   <footer class="page-footer font-small">
