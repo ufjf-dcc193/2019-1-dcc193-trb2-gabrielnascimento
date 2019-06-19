@@ -1,10 +1,15 @@
 package ufjf.dcc193.tr2.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import ufjf.dcc193.tr2.dao.AreaConhecimentoRepository;
 import ufjf.dcc193.tr2.dao.TrabalhoRepository;
@@ -36,10 +41,18 @@ public class TrabalhoController {
         return "trabalho/trabalho-form";
     }
 
-    @RequestMapping("/salvar")
-    public String salvarSubmit(Trabalho trabalho){
+    @PostMapping("/salvar")
+    public ModelAndView salvarTrabalhoSubmit(@Valid Trabalho trabalho, BindingResult binding){
+        ModelAndView mv = new ModelAndView();
+        if(binding.hasErrors()){
+            mv.setViewName("trabalho/trabalho-form");
+            mv.addObject("trabalho", trabalho);
+            mv.addObject("listArea",repAreaConhecimento.findAll());
+            return mv;
+        }
+        mv.setViewName("redirect:/trabalho/"); 
         repTrabalho.save(trabalho);
-        return "redirect:/trabalho/";
+        return mv;
     }
 
     @RequestMapping("/editar/{id}")
