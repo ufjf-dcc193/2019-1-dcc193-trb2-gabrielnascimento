@@ -74,7 +74,7 @@ public class DemoApplication {
 			revisaoRep.save(new Revisao(avaliadorRep.findAll().get(0),
 					 trabalhoRep.findAll().get(0), 2, "Olimpiada de fisica", 1));		 
 		};
-		*/
+		
 	}
-
+	*/
 }
