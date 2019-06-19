@@ -37,7 +37,6 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	/*
 	@Bean
 	InitializingBean sendDatabase() {
 		return () -> {
@@ -76,5 +75,4 @@ public class DemoApplication {
 		};
 		
 	}
-	*/
 }
