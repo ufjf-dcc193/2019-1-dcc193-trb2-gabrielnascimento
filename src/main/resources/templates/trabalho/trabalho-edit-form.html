@@ -27,17 +27,21 @@
 				</div>
 			</div>
         </nav>
-        <h5>Novo avaliador</h5>
+        <br/>
+        <h3 style="text-align: center">Editar trabalho</h3>
         <form th:action="@{./salvar}" th:object="${trabalho}" method="POST">
             <input type="text" th:field="*{id}" class="d-none" />
             <div class="form-group">
                 <label>Título: <input type="text" class="form-control" th:field="*{titulo}" /></label>
+                <strong th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></strong>
             </div>
             <div class="form-group">
                 <label>Descrição: <input type="text" class="form-control" th:field="*{descricao}" /></label>
+                <strong th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></strong>
             </div>
             <div class="form-group">
                 <label>URL: <input type="text" class="form-control" th:field="*{url}" /></label>
+                <strong th:if="${#fields.hasErrors('url')}" th:errors="*{url}"></strong>
             </div>
             <div class="form-group form-check card">
                 <label>Área de Conhecimento:</label>

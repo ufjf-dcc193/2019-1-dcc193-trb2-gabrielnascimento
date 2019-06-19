@@ -62,10 +62,18 @@ public class TrabalhoController {
         return "trabalho/trabalho-edit-form";
     }
 
-    @RequestMapping("/editar/salvar")
-    public String editarTrabalhoSubmit(Trabalho trabalho){
+    @PostMapping("/editar/salvar")
+    public ModelAndView editarTrabalhoSubmit(@Valid Trabalho trabalho, BindingResult binding){
+        ModelAndView mv = new ModelAndView();
+        if(binding.hasErrors()){
+            mv.setViewName("trabalho/trabalho-edit-form");
+            mv.addObject("trabalho", trabalho);
+            mv.addObject("listArea",repAreaConhecimento.findAll());
+            return mv;
+        }
+        mv.setViewName("redirect:/trabalho/"); 
         repTrabalho.save(trabalho);
-        return "redirect:/trabalho/";
+        return mv;
     }
 
     @RequestMapping("/deletar/{id}")
