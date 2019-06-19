@@ -66,10 +66,18 @@ public class AvaliadorController {
         return "avaliador/avaliador-edit";
     }
 
-    @RequestMapping("/editar/submit")
-    public String editarSalvarAvaliador(Avaliador avaliador){
+    @PostMapping("/editar/submit")
+    public ModelAndView editarSalvarAvaliador(@Valid Avaliador avaliador, BindingResult binding){
+        ModelAndView mv = new ModelAndView();
+        if(binding.hasErrors()){
+            mv.setViewName("avaliador/avaliador-edit");
+            mv.addObject("avaliador", avaliador);
+            mv.addObject("listArea", areaConhecimentoRep.findAll());
+            return mv;
+        }
         avaliadorRep.save(avaliador);
-        return "redirect:/avaliador/";
+        mv.setViewName("redirect:/avaliador/"); 
+        return mv;
     }
     
     @RequestMapping("/deletar/{id}")

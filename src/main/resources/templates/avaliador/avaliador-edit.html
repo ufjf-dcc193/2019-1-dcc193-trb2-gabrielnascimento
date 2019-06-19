@@ -30,16 +30,19 @@
         <h5>Editar avaliador</h5>
         <form th:action="@{./submit}" th:object="${avaliador}" method="POST">
           <input type="text" th:field="*{id}" class="d-none" />
-            <div class="form-group">
-                <label>Nome: <input type="text" class="form-control" th:field="*{nome}" /></label>
-            </div>
-            <div class="form-group">
-                <label>Email: <input type="text" class="form-control" th:field="*{email}" /></label>
-            </div>
-            <div class="form-group">
-                <label>Codigo de Acesso: <input type="text" class="form-control" th:field="*{codigoAcesso}" /></label>
-            </div>
-            <div class="form-group form-check card">
+          <div class="form-group">
+            <label>Nome: <input type="text" class="form-control" th:field="*{nome}" /></label>
+            <strong th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></strong>
+        </div>
+        <div class="form-group">
+            <label>Email: <input type="text" class="form-control" th:field="*{email}" /></label>
+            <strong th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></strong>
+        </div>
+        <div class="form-group">
+            <label>Codigo de Acesso: <input type="text" class="form-control" th:field="*{codigoAcesso}" /></label>
+            <strong th:if="${#fields.hasErrors('codigoAcesso')}" th:errors="*{codigoAcesso}"></strong>
+        </div>
+        <div class="form-group form-check card">
               <label for="formGroupExampleInput">Área de Conhecimento:</label>
               <div class="row card-body">
                   <div class="col-6" th:each="listArea, stat: ${listArea}" th:object=${AreaConhecimento}>
