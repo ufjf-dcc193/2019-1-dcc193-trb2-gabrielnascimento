@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 
 /**
  * Revisao
@@ -15,7 +17,9 @@ public class Revisao {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    @PositiveOrZero(message = "Somente valores positivos")
     private int nota;
+    @NotBlank(message = "Campo obrigatório")
     private String descricao;
     private int status;
 

@@ -44,12 +44,14 @@
                     <div class="form-group">
                         <label>Descrição</label> 
                         <input type="text" class="form-control" th:field="*{descricao}" />
+                        <strong th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></strong>
                     </div>        
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>Nota</label> 
                         <input type="number" class="form-control" th:field="*{nota}" />
+                        <strong th:if="${#fields.hasErrors('nota')}" th:errors="*{nota}"></strong>
                     </div>        
                 </div>
             </div>

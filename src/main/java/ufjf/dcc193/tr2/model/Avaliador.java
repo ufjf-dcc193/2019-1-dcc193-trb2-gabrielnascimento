@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
 import javax.persistence.Entity;
 
 /**
@@ -17,8 +18,11 @@ public class Avaliador {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    @NotBlank(message = "Campo obrigatório")
     private String nome;
+    @NotBlank(message = "Campo obrigatório")
     private String email;
+    @NotBlank(message = "Campo obrigatório")
     private String codigoAcesso;
 
     @ManyToMany

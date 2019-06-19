@@ -1,12 +1,16 @@
 package ufjf.dcc193.tr2.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import ufjf.dcc193.tr2.dao.*;
 import ufjf.dcc193.tr2.model.Avaliador;
@@ -41,10 +45,18 @@ public class AvaliadorController {
         return "avaliador/avaliador-form";
     }
 
-    @RequestMapping("/salvar")
-    public String salvarAvaliador(Avaliador avaliador){
+    @PostMapping("/salvar")
+    public ModelAndView salvarAvaliador(@Valid Avaliador avaliador, BindingResult binding){
+        ModelAndView mv = new ModelAndView();
+        if(binding.hasErrors()){
+            mv.setViewName("avaliador/avaliador-form");
+            mv.addObject("avaliador", avaliador);
+            mv.addObject("listArea", areaConhecimentoRep.findAll());
+            return mv;
+        }
         avaliadorRep.save(avaliador);
-        return "redirect:/avaliador/";
+        mv.setViewName("redirect:/avaliador/"); 
+        return mv;
     }
 
     @RequestMapping("/editar/{id}")
@@ -55,7 +67,7 @@ public class AvaliadorController {
     }
 
     @RequestMapping("/editar/submit")
-    public String editarsalvarAvaliador(Avaliador avaliador){
+    public String editarSalvarAvaliador(Avaliador avaliador){
         avaliadorRep.save(avaliador);
         return "redirect:/avaliador/";
     }

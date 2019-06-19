@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
 
 /**
  * Trabalho
@@ -15,8 +16,11 @@ public class Trabalho {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    @NotBlank(message = "Campo obrigatório")
     private String titulo;
+    @NotBlank(message = "Campo obrigatório")
     private String descricao;
+    @NotBlank(message = "Campo obrigatório")
     private String url;
 
     @OneToOne
