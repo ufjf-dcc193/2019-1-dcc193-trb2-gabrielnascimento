@@ -61,8 +61,8 @@
                         <span th:if="${revisao.status == 3}"> validado</span>
                         <span th:if="${revisao.status == 3}"> Invalidado</span>
                     </td>
-                    <td th:text=${revisao.avaliador.nome}></td>
                     <td th:text=${revisao.trabalho.titulo}></td>
+                    <td th:text=${revisao.avaliador.nome}></td>
                     <td>
                         <a class="btn btn-warning" th:href="@{'./editar/' + ${revisao.id}}" role="button">Editar</a>
                     </td>

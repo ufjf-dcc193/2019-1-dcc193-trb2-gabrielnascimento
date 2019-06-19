@@ -27,7 +27,7 @@
 				</div>
 			</div>
         </nav>
-        <h5>Novo trabalho</h5>
+        <h3 style="text-align: center">Novo trabalho</h3>
         <form th:action="@{./salvar}" th:object="${trabalho}" method="POST">
             <div class="form-group">
                 <label>Título: <input type="text" class="form-control" th:field="*{titulo}" /></label>
