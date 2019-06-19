@@ -1,10 +1,15 @@
 package ufjf.dcc193.tr2.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import ufjf.dcc193.tr2.dao.AreaConhecimentoRepository;
 import ufjf.dcc193.tr2.dao.AvaliadorRepository;
@@ -56,10 +61,17 @@ public class RevisaoController {
         return "revisao/revisaoReview-form";
     }
 
-    @RequestMapping("/criar/salvar")
-    public String salvarRevisao(Revisao revisao){
+    @PostMapping("/criar/salvar")
+    public ModelAndView salvarRevisao(@Valid Revisao revisao, BindingResult binding){
+        ModelAndView mv = new ModelAndView();
+        if(binding.hasErrors()){
+            mv.addObject("listArea",areaConhecimentoRep.findAll());
+            mv.setViewName("redirect:/revisao/criar");
+            return mv;
+        }
+        mv.setViewName("redirect:/revisao/"); 
         revisaoRep.save(revisao);
-        return "redirect:/revisao/";
+        return mv;
     }
 
     @RequestMapping("/editar/{id}")
