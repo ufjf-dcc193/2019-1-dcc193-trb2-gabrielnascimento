@@ -46,8 +46,10 @@
                     <th>Status</th>
                     <th>Nome do Trabalho</th>
                     <th>Nome do Avaliador</th>
-                    <th></th>
-                    <th></th>
+                    <!--
+                        <th></th>
+                        <th></th>
+                    -->
                 </tr>
             </thead>
             <tbody>
@@ -63,12 +65,14 @@
                     </td>
                     <td th:text=${revisao.trabalho.titulo}></td>
                     <td th:text=${revisao.avaliador.nome}></td>
-                    <td>
-                        <a class="btn btn-warning" th:href="@{'./editar/' + ${revisao.id}}" role="button">Editar</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-danger" th:href="@{'./deletar/' + ${revisao.id}}" role="button">Deletar</a>
-                    </td>
+                    <!--
+                        <td>
+                            <a class="btn btn-warning" th:href="@{'./editar/' + ${revisao.id}}" role="button">Editar</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" th:href="@{'./deletar/' + ${revisao.id}}" role="button">Deletar</a>
+                        </td>
+                    -->
                 </tr>
             </tbody>
         </table>
